@@ -15,6 +15,9 @@ public class BlockMadeStairs extends BlockStairs {
         super(parentBlock, parentMeta);
         this.parentBlock = parentBlock;
         this.parentMeta = parentMeta;
+        this.setBlockName(parentBlock.getUnlocalizedName());
+        while (getUnlocalizedName().startsWith("tile.tile."))
+            this.setBlockName(getUnlocalizedName().substring(10));
     }
 
     public final Block getParentBlock() {

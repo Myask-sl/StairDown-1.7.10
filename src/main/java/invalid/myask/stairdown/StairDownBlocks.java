@@ -25,36 +25,39 @@ public class StairDownBlocks {
     public static void registerVanillaLogBlocks() {
         GameRegistry.registerBlock(furnace_stair, "furnace_stairs");
         furnace_stair.setCreativeTab(stair_down_tab);
-        registerALogStair(Blocks.log, 0);
-        registerALogStair(Blocks.log2, 0);
-        registerAHollowLog(Blocks.log, 0);
-        registerAHollowLog(Blocks.log2, 0);
+        registerALogStair("log", 0);
+        registerALogStair("log2", 0);
+        registerAHollowLog("log", 0);
+        registerAHollowLog("log2", 0);
     }
 
-    public static void registerABlockAlter(Block b, String postfix) {
-        String preformat = b.getUnlocalizedName();
+    public static void registerABlockAlter(Block b, String oldname, String postfix) {
+        String preformat = (oldname == null) ? b.getUnlocalizedName() : oldname;
         if (preformat.startsWith("tile."))
             preformat = preformat.substring(5);
         b.setBlockName(preformat + postfix);
-        GameRegistry.registerBlock(b, b.getUnlocalizedName().substring(5));
+        GameRegistry.registerBlock(b,  preformat + postfix);
         b.setCreativeTab(stair_down_tab);
     }
 
-    public static void registerALogStair(Block b, int meta) {
+    public static void registerALogStair(String s, int meta) {
+        Block b = (Block) Block.blockRegistry.getObject(s);
         BlockMadeStairs bs = new BlockLogStairs(b, meta);
-        registerABlockAlter(bs, ".stairs");
+        registerABlockAlter(bs, s,".stairs");
         stairs.add(bs);
     }
 
-    public static void registerAStair(Block b, int meta) {
+    public static void registerAStair(String s, int meta) {
+        Block b = (Block) Block.blockRegistry.getObject(s);
         BlockMadeStairs bs = new BlockMadeStairs(b, meta);
-        registerABlockAlter(bs, ".stairs");
+        registerABlockAlter(bs, s,".stairs");
         stairs.add(bs);
     }
 
-    public static void registerAHollowLog(Block b, int meta) {
+    public static void registerAHollowLog(String s, int meta) {
+        Block b = (Block) Block.blockRegistry.getObject(s);
         BlockHollowLog bhl = new BlockHollowLog(b, meta);
-        registerABlockAlter(bhl, ".hollow");
+        registerABlockAlter(bhl, s,".hollow");
         logs.add(bhl);
     }
 }

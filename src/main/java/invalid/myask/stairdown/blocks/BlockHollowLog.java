@@ -21,6 +21,9 @@ public class BlockHollowLog extends BlockRotatedPillar {
         super(parent.getMaterial());
         this.parentBlock = parent;
         this.parentMeta = meta;
+        this.setBlockName(parent.getUnlocalizedName());
+        while (getUnlocalizedName().startsWith("tile.tile."))
+            this.setBlockName(getUnlocalizedName().substring(10));
     }
 
     @Override
