@@ -18,6 +18,7 @@ public class BlockMadeStairs extends BlockStairs {
         this.setBlockName(parentBlock.getUnlocalizedName());
         while (getUnlocalizedName().startsWith("tile.tile."))
             this.setBlockName(getUnlocalizedName().substring(10));
+        useNeighborBrightness = true;
     }
 
     public final Block getParentBlock() {
