@@ -2,6 +2,7 @@ package invalid.myask.stairdown.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,10 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockHollowLog extends BlockRotatedPillar {
+    static final Material HOLLOW_WOOD = new Material(Material.wood.getMaterialMapColor()) {
+        @Override
+        public boolean isOpaque() {
+            return false;
+        }
+    };
+
     final Block parentBlock;
     final int parentMeta;
     public BlockHollowLog(Block parent, int meta) {
-        super(parent.getMaterial());
+        super(HOLLOW_WOOD);
         this.parentBlock = parent;
         this.parentMeta = meta;
         this.setBlockName(parent.getUnlocalizedName());
@@ -49,7 +57,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
 
     @Override
     public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity) {
-        return false;//(world.getBlockMetadata(x, y, z) & 12) == 0;
+        return (world.getBlockMetadata(x, y, z) & 12) == 0;
     }
 
     @Override
