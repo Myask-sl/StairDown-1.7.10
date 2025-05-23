@@ -3,8 +3,8 @@ package invalid.myask.stairdown;
 import cpw.mods.fml.common.registry.GameRegistry;
 import invalid.myask.stairdown.blocks.BlockHollowLog;
 import invalid.myask.stairdown.blocks.BlockLogStairs;
+import invalid.myask.stairdown.blocks.BlockMadeStairs;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -12,20 +12,19 @@ import net.minecraft.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-@GameRegistry.ObjectHolder(StairDown.MODID)
 public class StairDownBlocks {
-    public static final List<Block> stairs = new ArrayList<>();
+    public static final List<BlockMadeStairs> stairs = new ArrayList<>();
     public static final List<BlockHollowLog> logs = new ArrayList<>();
-    public static final Block furnaceStair = new BlockStairs(Blocks.furnace, 0);
-    public static final CreativeTabs stairTab = new CreativeTabs("stairdown.tab") {
+    public static final BlockMadeStairs furnace_stair = new BlockMadeStairs(Blocks.furnace, 0);
+    public static final CreativeTabs stair_down_tab = new CreativeTabs("stairdown.tab") {
         @Override
         public Item getTabIconItem() {
-            return Item.getItemFromBlock(furnaceStair);
+            return Item.getItemFromBlock(furnace_stair);
         }
     };
     public static void registerVanillaLogBlocks() {
-        GameRegistry.registerBlock(furnaceStair, "furnace_stairs");
-        furnaceStair.setCreativeTab(stairTab);
+        GameRegistry.registerBlock(furnace_stair, "furnace_stairs");
+        furnace_stair.setCreativeTab(stair_down_tab);
         for (int i = 0; i < 4; i++) {
             registerALogStair(Blocks.log, i);
         }
@@ -42,17 +41,17 @@ public class StairDownBlocks {
             preformat = preformat.substring(5);
         b.setBlockName(preformat + postfix);
         GameRegistry.registerBlock(b, b.getUnlocalizedName().substring(5));
-        b.setCreativeTab(stairTab);
+        b.setCreativeTab(stair_down_tab);
     }
 
     public static void registerALogStair(Block b, int meta) {
-        BlockStairs bs = new BlockLogStairs(b, meta);
+        BlockMadeStairs bs = new BlockLogStairs(b, meta);
         registerABlockAlter(b, ".stairs");
         stairs.add(bs);
     }
 
     public static void registerAStair(Block b, int meta) {
-        BlockStairs bs = new BlockStairs(b, meta);
+        BlockMadeStairs bs = new BlockMadeStairs(b, meta);
         registerABlockAlter(b, ".stairs");
         stairs.add(bs);
     }

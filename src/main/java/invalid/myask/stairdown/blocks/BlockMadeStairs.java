@@ -1,0 +1,27 @@
+package invalid.myask.stairdown.blocks;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockStairs;
+
+public class BlockMadeStairs extends BlockStairs {
+    protected final Block parentBlock;
+    protected final int parentMeta;
+    /**
+     * Ctor
+     * @param parentBlock block from which to draw textures and behavior
+     * @param parentMeta meta from which to draw textures and behavior--note that vanilla logs use upper two bits for orientation
+     */
+    public BlockMadeStairs(Block parentBlock, int parentMeta) {
+        super(parentBlock, parentMeta);
+        this.parentBlock = parentBlock;
+        this.parentMeta = parentMeta;
+    }
+
+    public final Block getParentBlock() {
+        return parentBlock;
+    }
+
+    public final int getParentMeta() {
+        return parentMeta;
+    }
+}

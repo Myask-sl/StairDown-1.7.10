@@ -1,7 +1,6 @@
 package invalid.myask.stairdown.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -13,15 +12,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BlockHollowLog extends BlockRotatedPillar {
-    Block parent;
-    int parentMeta;
+    final Block parentBlock;
+    final int parentMeta;
     public BlockHollowLog(Block parent, int meta) {
         super(parent.getMaterial());
-        this.parent = parent;
+        this.parentBlock = parent;
         this.parentMeta = meta;
     }
 
@@ -49,21 +47,29 @@ public class BlockHollowLog extends BlockRotatedPillar {
 
     @Override
     protected IIcon getSideIcon(int meta) {
-        return parent.getIcon(2, meta);
+        return parentBlock.getIcon(2, meta);
     }
 
     @Override
     protected IIcon getTopIcon(int meta) {
-        return parent.getIcon(0, meta);
+        return parentBlock.getIcon(0, meta);
     }
 
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-        parent.getSubBlocks(itemIn, tab, list); //...actually, that's enough, since it doesn't check the itemIn is right
+        parentBlock.getSubBlocks(itemIn, tab, list); //...actually, that's enough, since it doesn't check the itemIn is right
     }
 
     @Override
     public int onBlockPlaced(World worldIn, int x, int y, int z, int side, float subX, float subY, float subZ, int meta) {
         return super.onBlockPlaced(worldIn, x, y, z, side, subX, subY, subZ, meta) | parentMeta;
+    }
+
+    public final Block getParentBlock() {
+        return parentBlock;
+    }
+
+    public final int getParentMeta() {
+        return parentMeta;
     }
 }
