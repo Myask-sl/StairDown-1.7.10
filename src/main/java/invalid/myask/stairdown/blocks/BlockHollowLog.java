@@ -3,6 +3,7 @@ package invalid.myask.stairdown.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -87,4 +88,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
     public final int getParentMeta() {
         return parentMeta;
     }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {} //TODO: inside icon
 }

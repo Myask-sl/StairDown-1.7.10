@@ -2,6 +2,7 @@ package invalid.myask.stairdown.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockMadeStairs extends BlockStairs {
     protected final Block parentBlock;
@@ -27,5 +28,10 @@ public class BlockMadeStairs extends BlockStairs {
 
     public final int getParentMeta() {
         return parentMeta;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        super.registerBlockIcons(reg);
     }
 }
