@@ -12,6 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlockHollowLog extends BlockRotatedPillar {
@@ -27,7 +28,8 @@ public class BlockHollowLog extends BlockRotatedPillar {
     }
 
     @Override
-    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collider) {
+    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask, List<AxisAlignedBB> list2, Entity collider) {
+        List<AxisAlignedBB> list = new ArrayList<>();
         int meta = worldIn.getBlockMetadata(x, y, z);
         if ((meta & 12) != 0) {
             list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + (2 / 16D), z + 1));
@@ -41,6 +43,8 @@ public class BlockHollowLog extends BlockRotatedPillar {
             list.add(AxisAlignedBB.getBoundingBox(x,y,z, x+1, y+1, z+(2/16D)));
             list.add(AxisAlignedBB.getBoundingBox(x,y,z+(14/16D), x+1, y+1, z+1));
         }
+        for (AxisAlignedBB aabb : list)
+            if (aabb.intersectsWith(mask)) list.add(aabb);
     }
 
     @Override
