@@ -3,7 +3,7 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "TODO: change mcmod.info to overwrite this description",
+		"description": "OSHA noncompliant stairs, hollow logs, and more!",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
 		"url": "",
