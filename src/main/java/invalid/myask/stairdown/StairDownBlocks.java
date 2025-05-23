@@ -25,12 +25,8 @@ public class StairDownBlocks {
     public static void registerVanillaLogBlocks() {
         GameRegistry.registerBlock(furnace_stair, "furnace_stairs");
         furnace_stair.setCreativeTab(stair_down_tab);
-        for (int i = 0; i < 4; i++) {
-            registerALogStair(Blocks.log, i);
-        }
-        for (int i = 0; i < 2; i++) {
-            registerALogStair(Blocks.log2, i);
-        }
+        registerALogStair(Blocks.log, 0);
+        registerALogStair(Blocks.log2, 0);
         registerAHollowLog(Blocks.log, 0);
         registerAHollowLog(Blocks.log2, 0);
     }
