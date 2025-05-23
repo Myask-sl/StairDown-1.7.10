@@ -46,19 +46,19 @@ public class StairDownBlocks {
 
     public static void registerALogStair(Block b, int meta) {
         BlockMadeStairs bs = new BlockLogStairs(b, meta);
-        registerABlockAlter(b, ".stairs");
+        registerABlockAlter(bs, ".stairs");
         stairs.add(bs);
     }
 
     public static void registerAStair(Block b, int meta) {
         BlockMadeStairs bs = new BlockMadeStairs(b, meta);
-        registerABlockAlter(b, ".stairs");
+        registerABlockAlter(bs, ".stairs");
         stairs.add(bs);
     }
 
     public static void registerAHollowLog(Block b, int meta) {
-        BlockHollowLog bs = new BlockHollowLog(b, meta);
-        registerABlockAlter(b, ".hollow");
-        logs.add(bs);
+        BlockHollowLog bhl = new BlockHollowLog(b, meta);
+        registerABlockAlter(bhl, ".hollow");
+        logs.add(bhl);
     }
 }
