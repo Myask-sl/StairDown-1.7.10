@@ -45,7 +45,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
 
     @Override
     public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity) {
-        return (world.getBlockMetadata(x, y, z) & 12) == 0;
+        return false;//(world.getBlockMetadata(x, y, z) & 12) == 0;
     }
 
     @Override
