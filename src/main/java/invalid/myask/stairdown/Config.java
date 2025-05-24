@@ -7,6 +7,7 @@ import net.minecraftforge.common.config.Configuration;
 public class Config {
     public static int stair_output_qty = 4;
     public static int log_output_qty = 18;
+    public static int hollow_thickness = 2;
 
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
@@ -16,6 +17,8 @@ public class Config {
         log_output_qty = configuration.getInt("log_output_qty", Configuration.CATEGORY_GENERAL,
             log_output_qty, 0, Integer.MAX_VALUE, "Hollow log recipes yield (18 default, 8 preserving-blocks).");
 
+        hollow_thickness = configuration.getInt("hollow_thickness", Configuration.CATEGORY_GENERAL,
+            hollow_thickness, 0, 8, "Hollow log thickness in standard MC pixels (0-8)");
         if (configuration.hasChanged()) {
             configuration.save();
         }

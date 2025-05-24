@@ -1,5 +1,6 @@
 package invalid.myask.stairdown.blocks;
 
+import invalid.myask.stairdown.Config;
 import invalid.myask.stairdown.client.HollowLogRenderer;
 import invalid.myask.stairdown.client.HollowTextures;
 import net.minecraft.block.Block;
@@ -26,7 +27,6 @@ public class BlockHollowLog extends BlockRotatedPillar {
             return false;
         }
     };
-    private static final byte THICKNESS = 2;
 
     final Block parentBlock;
     final int parentMeta;
@@ -45,16 +45,16 @@ public class BlockHollowLog extends BlockRotatedPillar {
         List<AxisAlignedBB> list = new ArrayList<>();
         int meta = worldIn.getBlockMetadata(x, y, z);
         if ((meta & 12) != 0) {
-            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + (THICKNESS / 16D), z + 1));
-            list.add(AxisAlignedBB.getBoundingBox(x, y + (16 - THICKNESS / 16D), z, x + 1, y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + (Config.hollow_thickness / 16D), z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y + (16 - Config.hollow_thickness / 16D), z, x + 1, y + 1, z + 1));
         }
         if ((meta & 12) != 4) {
-            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + (THICKNESS / 16D), y + 1, z + 1));
-            list.add(AxisAlignedBB.getBoundingBox(x + (16-THICKNESS / 16D), y, z, x + 1, y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + (Config.hollow_thickness / 16D), y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x + (16-Config.hollow_thickness / 16D), y, z, x + 1, y + 1, z + 1));
         }
         if ((meta & 12) != 8) {
-            list.add(AxisAlignedBB.getBoundingBox(x,y,z, x+1, y+1, z+(THICKNESS/16D)));
-            list.add(AxisAlignedBB.getBoundingBox(x,y,z+(16-THICKNESS/16D), x+1, y+1, z+1));
+            list.add(AxisAlignedBB.getBoundingBox(x,y,z, x+1, y+1, z+(Config.hollow_thickness/16D)));
+            list.add(AxisAlignedBB.getBoundingBox(x,y,z+(16-Config.hollow_thickness/16D), x+1, y+1, z+1));
         }
         for (AxisAlignedBB aabb : list)
             if (aabb.intersectsWith(mask)) outputList.add(aabb);
@@ -79,27 +79,27 @@ public class BlockHollowLog extends BlockRotatedPillar {
         coord2max = switch (phase) {
             case 0 -> {
                 coord1min = 0;
-                coord1max = 16 - THICKNESS;
-                coord2min = 16 - THICKNESS;
+                coord1max = 16 - Config.hollow_thickness;
+                coord2min = 16 - Config.hollow_thickness;
                 yield 16;
             }
             case 1 -> {
-                coord1min = 16 - THICKNESS;
+                coord1min = 16 - Config.hollow_thickness;
                 coord1max = 16;
-                coord2min = THICKNESS;
+                coord2min = Config.hollow_thickness;
                 yield 16;
             }
             case 2 -> {
-                coord1min = THICKNESS;
+                coord1min = Config.hollow_thickness;
                 coord1max = 16;
                 coord2min = 0;
-                yield THICKNESS;
+                yield Config.hollow_thickness;
             }
             default -> {
                 coord1min = 0;
-                coord1max = THICKNESS;
+                coord1max = Config.hollow_thickness;
                 coord2min = 0;
-                yield 16 - THICKNESS;
+                yield 16 - Config.hollow_thickness;
             }
         };
         int xMin, xMax, yMin, yMax, zMin, zMax;
