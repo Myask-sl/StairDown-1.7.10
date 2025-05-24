@@ -26,12 +26,17 @@ public class StairDownBlocks {
     public static void registerVanillaLogBlocks() {
         GameRegistry.registerBlock(furnace_stair, ItemBlockFromParent.class, "furnace.stairs0");
         furnace_stair.setCreativeTab(stair_down_tab);
+        registerAStair("crafting_table", 0);
         for (int i = 0; i < 4; i++)
             registerALogStair("log", i);
         for (int i = 0; i < 2; i++)
             registerALogStair("log2", i);
         registerAHollowLog("log", 0);
         registerAHollowLog("log2", 0);
+    }
+
+    public static void registerModdedBonusBlocks() {
+        registerAStair("BiomesOPlenty:planks", 10);
     }
 
     public static void registerABlockAlter(Block b, String oldname, String postfix) {
