@@ -4,6 +4,7 @@ import invalid.myask.stairdown.Config;
 import invalid.myask.stairdown.client.HollowLogRenderer;
 import invalid.myask.stairdown.client.HollowTextures;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -39,6 +40,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
             this.setBlockName(getUnlocalizedName().substring(10));
 //        inSide = new ThreadLocal<>();
         inSide = -1;
+        useNeighborBrightness = true;
     }
 
     @Override
@@ -131,22 +133,27 @@ public class BlockHollowLog extends BlockRotatedPillar {
     }
 
     @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
     public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity) {
         return (world.getBlockMetadata(x, y, z) & 12) == 0;
     }
 
     @Override
     protected IIcon getSideIcon(int meta) {
-        return parentBlock.getIcon(2, meta);
+        return parentBlock.getIcon(2, meta & 3);
     }
 
     @Override
     protected IIcon getTopIcon(int meta) {
-        return parentBlock.getIcon(0, meta);
+        return parentBlock.getIcon(0, meta & 3);
     }
 
-    public IIcon getInsideIcon() {
-        return HollowTextures.getInsideIcon(parentBlock.getIcon(0,parentMeta));
+    public IIcon getInsideIcon(int meta) {
+        return HollowTextures.getInsideIcon(parentBlock.getIcon(0, meta & 3));
     }
 
     @Override
@@ -155,7 +162,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
         if (i == -1 || i != side)
             return super.getIcon(side, meta);
         else
-            return getInsideIcon();
+            return getInsideIcon(meta);
     }
 
     @Override
@@ -183,6 +190,6 @@ public class BlockHollowLog extends BlockRotatedPillar {
 
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        HollowTextures.loadInsideIcon(parentBlock.getIcon(0,parentMeta));
+//        HollowTextures.loadInsideIcon(parentBlock.getIcon(0,parentMeta));
     }
 }
