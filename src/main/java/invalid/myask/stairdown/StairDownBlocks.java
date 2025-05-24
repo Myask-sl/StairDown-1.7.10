@@ -51,6 +51,10 @@ public class StairDownBlocks {
 
     public static void registerALogStair(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
+        if (b == null) {
+            StairDown.LOG.error("Block {} not found in registry to make log stair of, skipping...", s);
+            return;
+        }
         BlockMadeStairs bs = new BlockLogStairs(b, meta);
         registerABlockAlter(bs, s,".stairs" + meta);
         stairs.add(bs);
@@ -58,6 +62,10 @@ public class StairDownBlocks {
 
     public static void registerAStair(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
+        if (b == null) {
+            StairDown.LOG.error("Block {} not found in registry to make stair of, skipping...", s);
+            return;
+        }
         BlockMadeStairs bs = new BlockMadeStairs(b, meta);
         registerABlockAlter(bs, s,".stairs" + meta);
         stairs.add(bs);
@@ -65,6 +73,10 @@ public class StairDownBlocks {
 
     public static void registerAHollowLog(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
+        if (b == null) {
+            StairDown.LOG.error("Block {} not found in registry to make hollow log of, skipping...", s);
+            return;
+        }
         BlockHollowLog bhl = new BlockHollowLog(b, meta);
         registerABlockAlter(bhl, s,".hollow");
         logs.add(bhl);
