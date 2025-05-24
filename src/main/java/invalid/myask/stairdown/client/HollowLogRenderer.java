@@ -40,11 +40,12 @@ public class HollowLogRenderer implements ISimpleBlockRenderingHandler {
             int meta = world.getBlockMetadata(x, y, z);
             boolean result = true;
             renderer.uvRotateNorth =
-                renderer.uvRotateSouth =
-                    renderer.uvRotateEast =
-                        renderer.uvRotateWest = ((meta & 12) > 0) ? 1 : 0;
-            renderer.uvRotateTop =
-                renderer.uvRotateBottom = ((meta & 12) == 4) ? 1 : 0;
+                renderer.uvRotateSouth = ((meta & 12) == 8) ? 1 : 0;
+
+            renderer.uvRotateEast =
+                renderer.uvRotateWest =
+                    renderer.uvRotateTop =
+                        renderer.uvRotateBottom = ((meta & 12) == 4) ? 1 : 0;
             Tessellator tessellator = Tessellator.instance;
 
             //meta &12 == 0: up/down. phase 0-3 goes
