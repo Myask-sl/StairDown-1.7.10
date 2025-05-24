@@ -21,18 +21,12 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockHollowLog extends BlockRotatedPillar {
-    static final Material HOLLOW_WOOD = new Material(Material.wood.getMaterialMapColor()) {
-        @Override
-        public boolean isOpaque() {
-            return false;
-        }
-    };
+public class BlockHollowLog extends BlockLog {
 
     final Block parentBlock;
     final int parentMeta;
     public BlockHollowLog(Block parent, int meta) {
-        super(HOLLOW_WOOD);
+        super();//HOLLOW_WOOD);
         this.parentBlock = parent;
         this.parentMeta = meta;
         this.setBlockName(parent.getUnlocalizedName());
@@ -134,6 +128,11 @@ public class BlockHollowLog extends BlockRotatedPillar {
 
     @Override
     public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
         return false;
     }
 
