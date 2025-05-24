@@ -73,11 +73,11 @@ public class BlockHollowLog extends BlockRotatedPillar {
         //meta &12 == 4: e/w. X hollow [0-1]. ZY. phase 0-3 goes DSUN 0312 (1203 inside)
         int newSide = switch ((meta & 12) + phase) {
             case  9, 1          -> 5;
-            case 10, 6          -> 1;
+            case 10, 6          -> 0;
             case 11, 3          -> 4;
             case  0, 5          -> 3;
             case  2, 7          -> 2;
-          /*cas 8, 4,*/ default -> 0;
+          /*cas 8, 4,*/ default -> 1;
         };
         newSide ^= 1; //make it the inside rather than "which side is rendering"
         inSide = newSide;
