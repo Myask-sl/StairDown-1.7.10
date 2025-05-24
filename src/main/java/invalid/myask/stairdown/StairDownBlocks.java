@@ -43,6 +43,7 @@ public class StairDownBlocks {
         String preformat = (oldname == null) ? b.getUnlocalizedName() : oldname;
         while (preformat.startsWith("tile."))
             preformat = preformat.substring(5);
+        preformat = preformat.replace(':', '.'); //let's make the othermod
         b.setBlockName(preformat + postfix);
         GameRegistry.registerBlock(b, ItemBlockFromParent.class, preformat + postfix);
         b.setCreativeTab(stair_down_tab);
