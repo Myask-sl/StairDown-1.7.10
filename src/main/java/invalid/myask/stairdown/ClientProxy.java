@@ -15,6 +15,6 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         RenderingRegistry.registerBlockHandler(HollowLogRenderer.instance);
-        MinecraftForge.EVENT_BUS.register(HollowTextures.instance);
+        //MinecraftForge.EVENT_BUS.register(HollowTextures.instance);
     }
 }

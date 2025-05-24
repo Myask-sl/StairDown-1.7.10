@@ -14,15 +14,16 @@ public class HollowTextures {
 
     public static IIcon getInsideIcon(IIcon icon) {
         TextureAtlasSprite result = HOLLOW_ICONS.get(icon.getIconName());
-        if (result == null) {
-            result = new TextureAtlasSpriteSliced((TextureAtlasSprite) icon);
-            HOLLOW_ICONS.put(icon.getIconName(), result);
+        if (result == null || (result.getOriginX() == 0 && result.getOriginY() == 0)) {
+            result = loadInsideIcon(icon);
         }
         return result;
     }
 
-    public static void loadInsideIcon(IIcon icon) {
-        HOLLOW_ICONS.put(icon.getIconName(), new TextureAtlasSpriteSliced((TextureAtlasSprite) icon));
+    public static TextureAtlasSpriteSliced loadInsideIcon(IIcon icon) {
+        TextureAtlasSpriteSliced result = new TextureAtlasSpriteSliced((TextureAtlasSprite) icon);
+        HOLLOW_ICONS.put(icon.getIconName(), result);
+        return result;
     }
 
     @SubscribeEvent
