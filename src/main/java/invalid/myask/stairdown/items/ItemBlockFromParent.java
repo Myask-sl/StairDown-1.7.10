@@ -30,8 +30,15 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         }
     }
 
+    ItemStack cachedStack, fakeMetaStack;
+
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock()).getUnlocalizedName(stack);
+        if (cachedStack == null || stack != cachedStack) {
+            fakeMetaStack = stack.copy();
+            cachedStack = stack;
+            fakeMetaStack.setItemDamage(((IParentBlock) field_150939_a).getParentMeta());
+        }
+        return getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock()).getUnlocalizedName(fakeMetaStack);
     }
 }
