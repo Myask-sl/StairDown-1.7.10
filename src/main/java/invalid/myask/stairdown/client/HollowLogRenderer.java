@@ -52,6 +52,7 @@ public class HollowLogRenderer implements ISimpleBlockRenderingHandler {
             //meta &12 == 4: e/w. phase 0-3 goes
             for (int phase = 0; phase < 4; phase++) {
                 hollow.setVariablesForRenderSide(phase, meta);
+                renderer.setRenderBoundsFromBlock(hollow);
                 result = renderer.renderStandardBlock(hollow, x, y, z) && result;
             }
 
