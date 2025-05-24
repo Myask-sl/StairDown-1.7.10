@@ -2,8 +2,9 @@ package invalid.myask.stairdown.blocks;
 
 import invalid.myask.stairdown.api.IParentBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockStairs;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.world.World;
 
 public class BlockMadeStairs extends BlockStairs implements IParentBlock {
     protected final Block parentBlock;
@@ -32,7 +33,8 @@ public class BlockMadeStairs extends BlockStairs implements IParentBlock {
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister reg) {
-        super.registerBlockIcons(reg);
+    public void onBlockAdded(World worldIn, int x, int y, int z) {
+        if (!(parentBlock instanceof BlockFurnace))
+            super.onBlockAdded(worldIn, x, y, z);
     }
 }
