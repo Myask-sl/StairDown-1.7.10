@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import invalid.myask.stairdown.blocks.BlockHollowLog;
 import invalid.myask.stairdown.blocks.BlockLogStairs;
 import invalid.myask.stairdown.blocks.BlockMadeStairs;
+import invalid.myask.stairdown.items.ItemBlockFromParent;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -33,10 +34,10 @@ public class StairDownBlocks {
 
     public static void registerABlockAlter(Block b, String oldname, String postfix) {
         String preformat = (oldname == null) ? b.getUnlocalizedName() : oldname;
-        if (preformat.startsWith("tile."))
+        while (preformat.startsWith("tile."))
             preformat = preformat.substring(5);
         b.setBlockName(preformat + postfix);
-        GameRegistry.registerBlock(b,  preformat + postfix);
+        GameRegistry.registerBlock(b, ItemBlockFromParent.class, preformat + postfix);
         b.setCreativeTab(stair_down_tab);
     }
 

@@ -5,8 +5,6 @@ import invalid.myask.stairdown.client.HollowLogRenderer;
 import invalid.myask.stairdown.client.HollowTextures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockRotatedPillar;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -30,7 +28,7 @@ public class BlockHollowLog extends BlockLog {
         this.parentBlock = parent;
         this.parentMeta = meta;
         this.setBlockName(parent.getUnlocalizedName());
-        while (getUnlocalizedName().startsWith("tile.tile."))
+        if (getUnlocalizedName().startsWith("tile.tile."))
             this.setBlockName(getUnlocalizedName().substring(10));
 //        inSide = new ThreadLocal<>();
         inSide = -1;
@@ -190,5 +188,10 @@ public class BlockHollowLog extends BlockLog {
     @Override
     public void registerBlockIcons(IIconRegister reg) {
 //        HollowTextures.loadInsideIcon(parentBlock.getIcon(0,parentMeta));
+    }
+
+    @Override
+    public String getUnlocalizedName() {
+        return parentBlock.getUnlocalizedName();
     }
 }
