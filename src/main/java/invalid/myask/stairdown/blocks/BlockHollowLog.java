@@ -37,8 +37,8 @@ public class BlockHollowLog extends BlockRotatedPillar {
         this.setBlockName(parent.getUnlocalizedName());
         while (getUnlocalizedName().startsWith("tile.tile."))
             this.setBlockName(getUnlocalizedName().substring(10));
-        inSide = new ThreadLocal<>();
-        inSide.set(-1);
+//        inSide = new ThreadLocal<>();
+        inSide = -1;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
         setBlockBounds(0, 0, 0, 1, 1, 1);
     }
 
-    ThreadLocal<Integer> inSide;
+    int inSide;
     public void setVariablesForRenderSide(int phase, int meta) {
         //meta &12 == 8: n/s. Z hollow [0-1]. XY. phase 0-3 goes DEUW 0514 (1405 inside)
         //meta &12 == 0: u/d. Y hollow [0-1]. XZ. phase 0-3 goes SENW 3524 (2435 inside)
@@ -80,7 +80,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
           /*cas 8, 4,*/ default -> 0;
         };
         newSide ^= 1; //make it the inside rather than "which side is rendering"
-        inSide.set(newSide);
+        inSide = newSide;
         int coord1min, coord1max, coord2min, coord2max;
         coord2max = switch (phase) {
             case 0 -> {
@@ -151,7 +151,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        int i = inSide.get();
+        int i = inSide;
         if (i == -1 || i != side)
             return super.getIcon(side, meta);
         else
