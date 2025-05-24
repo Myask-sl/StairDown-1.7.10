@@ -1,5 +1,7 @@
 package invalid.myask.stairdown.blocks;
 
+import invalid.myask.stairdown.client.HollowLogRenderer;
+import invalid.myask.stairdown.client.HollowTextures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
@@ -24,6 +26,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
             return false;
         }
     };
+    private static final byte THICKNESS = 2;
 
     final Block parentBlock;
     final int parentMeta;
@@ -34,6 +37,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
         this.setBlockName(parent.getUnlocalizedName());
         while (getUnlocalizedName().startsWith("tile.tile."))
             this.setBlockName(getUnlocalizedName().substring(10));
+        inSide.set(-1);
     }
 
     @Override
@@ -41,19 +45,83 @@ public class BlockHollowLog extends BlockRotatedPillar {
         List<AxisAlignedBB> list = new ArrayList<>();
         int meta = worldIn.getBlockMetadata(x, y, z);
         if ((meta & 12) != 0) {
-            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + (2 / 16D), z + 1));
-            list.add(AxisAlignedBB.getBoundingBox(x, y + (14 / 16D), z, x + 1, y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + (THICKNESS / 16D), z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y + (16 - THICKNESS / 16D), z, x + 1, y + 1, z + 1));
         }
         if ((meta & 12) != 4) {
-            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + (2 / 16D), y + 1, z + 1));
-            list.add(AxisAlignedBB.getBoundingBox(x + (14 / 16D), y, z, x + 1, y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + (THICKNESS / 16D), y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x + (16-THICKNESS / 16D), y, z, x + 1, y + 1, z + 1));
         }
         if ((meta & 12) != 8) {
-            list.add(AxisAlignedBB.getBoundingBox(x,y,z, x+1, y+1, z+(2/16D)));
-            list.add(AxisAlignedBB.getBoundingBox(x,y,z+(14/16D), x+1, y+1, z+1));
+            list.add(AxisAlignedBB.getBoundingBox(x,y,z, x+1, y+1, z+(THICKNESS/16D)));
+            list.add(AxisAlignedBB.getBoundingBox(x,y,z+(16-THICKNESS/16D), x+1, y+1, z+1));
         }
         for (AxisAlignedBB aabb : list)
             if (aabb.intersectsWith(mask)) outputList.add(aabb);
+    }
+
+    ThreadLocal<Integer> inSide;
+    public void setVariablesForRenderSide(int phase, int meta) {
+        //meta &12 == 8: n/s. Z hollow [0-1]. XY. phase 0-3 goes DEUW 0514 (1405 inside)
+        //meta &12 == 0: u/d. Y hollow [0-1]. XZ. phase 0-3 goes SENW 3524 (2435 inside)
+        //meta &12 == 4: e/w. X hollow [0-1]. ZY. phase 0-3 goes DSUN 0312 (1203 inside)
+        int newSide = switch (meta & 12 + phase) {
+            case  9, 1          -> 5;
+            case 10, 6          -> 1;
+            case 11, 3          -> 4;
+            case  0, 5          -> 3;
+            case  2, 7          -> 2;
+          /*cas 8, 4,*/ default -> 0;
+        };
+        newSide ^= 1; //make it the inside rather than "which side is rendering"
+        inSide.set(newSide);
+        int coord1min, coord1max, coord2min, coord2max;
+        coord2max = switch (phase) {
+            case 0 -> {
+                coord1min = 0;
+                coord1max = 16 - THICKNESS;
+                coord2min = 16 - THICKNESS;
+                yield 16;
+            }
+            case 1 -> {
+                coord1min = 16 - THICKNESS;
+                coord1max = 16;
+                coord2min = THICKNESS;
+                yield 16;
+            }
+            case 2 -> {
+                coord1min = THICKNESS;
+                coord1max = 16;
+                coord2min = 0;
+                yield THICKNESS;
+            }
+            default -> {
+                coord1min = 0;
+                coord1max = THICKNESS;
+                coord2min = 0;
+                yield 16 - THICKNESS;
+            }
+        };
+        int xMin, xMax, yMin, yMax, zMin, zMax;
+        switch (meta & 12) {
+            case 8 -> {
+                zMin = 0; zMax = 16;
+                xMin = coord1min; xMax = coord1max;
+                yMin = coord2min; yMax = coord2max;
+            }
+            case 4 -> {
+                yMin = 0; yMax = 16;
+                xMin = coord1min; xMax = coord1max;
+                zMin = coord2min; zMax = coord2max;
+            }
+            default -> {
+                xMin = 0; xMax = 16;
+                zMin = coord1min; zMax = coord1max;
+                yMin = coord2min; yMax = coord2max;
+            }
+        };
+        setBlockBounds(xMin / 16F, yMin / 16F, zMin / 16F,
+            xMax / 16F, yMax / 16F, zMax / 16F);
     }
 
     @Override
@@ -69,6 +137,24 @@ public class BlockHollowLog extends BlockRotatedPillar {
     @Override
     protected IIcon getTopIcon(int meta) {
         return parentBlock.getIcon(0, meta);
+    }
+
+    public IIcon getInsideIcon() {
+        return HollowTextures.getInsideIcon(parentBlock.getIcon(0,parentMeta));
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        int i = inSide.get();
+        if (i == -1 || i != side)
+            return super.getIcon(side, meta);
+        else
+            return getInsideIcon();
+    }
+
+    @Override
+    public int getRenderType() {
+        return HollowLogRenderer.RENDER_ID;
     }
 
     @Override
@@ -90,5 +176,5 @@ public class BlockHollowLog extends BlockRotatedPillar {
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister reg) {} //TODO: inside icon
+    public void registerBlockIcons(IIconRegister reg) {}
 }
