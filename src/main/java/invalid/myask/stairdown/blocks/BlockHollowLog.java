@@ -47,18 +47,23 @@ public class BlockHollowLog extends BlockRotatedPillar {
         int meta = worldIn.getBlockMetadata(x, y, z);
         if ((meta & 12) != 0) {
             list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + (Config.hollow_thickness / 16D), z + 1));
-            list.add(AxisAlignedBB.getBoundingBox(x, y + (16 - Config.hollow_thickness / 16D), z, x + 1, y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x, y + ((16 - Config.hollow_thickness) / 16D), z, x + 1, y + 1, z + 1));
         }
         if ((meta & 12) != 4) {
             list.add(AxisAlignedBB.getBoundingBox(x, y, z, x + (Config.hollow_thickness / 16D), y + 1, z + 1));
-            list.add(AxisAlignedBB.getBoundingBox(x + (16-Config.hollow_thickness / 16D), y, z, x + 1, y + 1, z + 1));
+            list.add(AxisAlignedBB.getBoundingBox(x + ((16 - Config.hollow_thickness) / 16D), y, z, x + 1, y + 1, z + 1));
         }
         if ((meta & 12) != 8) {
             list.add(AxisAlignedBB.getBoundingBox(x,y,z, x+1, y+1, z+(Config.hollow_thickness/16D)));
-            list.add(AxisAlignedBB.getBoundingBox(x,y,z+(16-Config.hollow_thickness/16D), x+1, y+1, z+1));
+            list.add(AxisAlignedBB.getBoundingBox(x,y,z+((16-Config.hollow_thickness)/16D), x+1, y+1, z+1));
         }
         for (AxisAlignedBB aabb : list)
             if (aabb.intersectsWith(mask)) outputList.add(aabb);
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, int x, int y, int z) {
+        setBlockBounds(0, 0, 0, 1, 1, 1);
     }
 
     ThreadLocal<Integer> inSide;
@@ -177,5 +182,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister reg) {}
+    public void registerBlockIcons(IIconRegister reg) {
+        HollowTextures.loadInsideIcon(parentBlock.getIcon(0,parentMeta));
+    }
 }

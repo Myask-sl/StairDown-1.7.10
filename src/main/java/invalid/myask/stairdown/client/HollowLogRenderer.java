@@ -37,6 +37,8 @@ public class HollowLogRenderer implements ISimpleBlockRenderingHandler {
             int rotTop = renderer.uvRotateTop, rotBottom = renderer.uvRotateBottom,
                 rotNorth = renderer.uvRotateNorth, rotSouth = renderer.uvRotateSouth,
                 rotEast = renderer.uvRotateEast, rotWest = renderer.uvRotateWest;
+            boolean oldInside = renderer.renderFromInside;
+            renderer.renderFromInside = true;
             int meta = world.getBlockMetadata(x, y, z);
             boolean result = true;
             renderer.uvRotateNorth =
@@ -61,6 +63,7 @@ public class HollowLogRenderer implements ISimpleBlockRenderingHandler {
             renderer.uvRotateWest = rotWest;
             renderer.uvRotateTop = rotTop;
             renderer.uvRotateBottom = rotBottom;
+            renderer.renderFromInside = oldInside;
             return result;
         }
         return false;

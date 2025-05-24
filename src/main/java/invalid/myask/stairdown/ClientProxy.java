@@ -3,6 +3,8 @@ package invalid.myask.stairdown;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import invalid.myask.stairdown.client.HollowLogRenderer;
+import invalid.myask.stairdown.client.HollowTextures;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy {
 
@@ -13,5 +15,6 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         RenderingRegistry.registerBlockHandler(HollowLogRenderer.instance);
+        MinecraftForge.EVENT_BUS.register(HollowTextures.instance);
     }
 }
