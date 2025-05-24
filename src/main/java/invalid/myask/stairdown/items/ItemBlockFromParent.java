@@ -2,6 +2,7 @@ package invalid.myask.stairdown.items;
 
 import invalid.myask.stairdown.blocks.BlockHollowLog;
 import invalid.myask.stairdown.blocks.BlockMadeStairs;
+import invalid.myask.stairdown.api.IParentBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlockWithMetadata;
@@ -31,6 +32,6 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getItemFromBlock(((BlockHollowLog) field_150939_a).getParentBlock()).getUnlocalizedName(stack);
+        return getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock()).getUnlocalizedName(stack);
     }
 }

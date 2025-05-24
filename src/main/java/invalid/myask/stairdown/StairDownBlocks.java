@@ -26,8 +26,10 @@ public class StairDownBlocks {
     public static void registerVanillaLogBlocks() {
         GameRegistry.registerBlock(furnace_stair, "furnace_stairs");
         furnace_stair.setCreativeTab(stair_down_tab);
-        registerALogStair("log", 0);
-        registerALogStair("log2", 0);
+        for (int i = 0; i < 4; i++)
+            registerALogStair("log", i);
+        for (int i = 0; i < 2; i++)
+            registerALogStair("log2", i);
         registerAHollowLog("log", 0);
         registerAHollowLog("log2", 0);
     }
@@ -44,14 +46,14 @@ public class StairDownBlocks {
     public static void registerALogStair(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
         BlockMadeStairs bs = new BlockLogStairs(b, meta);
-        registerABlockAlter(bs, s,".stairs");
+        registerABlockAlter(bs, s,".stairs" + meta);
         stairs.add(bs);
     }
 
     public static void registerAStair(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
         BlockMadeStairs bs = new BlockMadeStairs(b, meta);
-        registerABlockAlter(bs, s,".stairs");
+        registerABlockAlter(bs, s,".stairs" + meta);
         stairs.add(bs);
     }
 

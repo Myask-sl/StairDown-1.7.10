@@ -1,6 +1,7 @@
 package invalid.myask.stairdown.blocks;
 
 import invalid.myask.stairdown.Config;
+import invalid.myask.stairdown.api.IParentBlock;
 import invalid.myask.stairdown.client.HollowLogRenderer;
 import invalid.myask.stairdown.client.HollowTextures;
 import net.minecraft.block.Block;
@@ -19,7 +20,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockHollowLog extends BlockLog {
+public class BlockHollowLog extends BlockLog implements IParentBlock {
 
     final Block parentBlock;
     final int parentMeta;

@@ -1,10 +1,11 @@
 package invalid.myask.stairdown.blocks;
 
+import invalid.myask.stairdown.api.IParentBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class BlockMadeStairs extends BlockStairs {
+public class BlockMadeStairs extends BlockStairs implements IParentBlock {
     protected final Block parentBlock;
     protected final int parentMeta;
     /**
