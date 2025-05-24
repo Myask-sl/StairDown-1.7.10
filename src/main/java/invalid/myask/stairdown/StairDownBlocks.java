@@ -24,7 +24,7 @@ public class StairDownBlocks {
         }
     };
     public static void registerVanillaLogBlocks() {
-        GameRegistry.registerBlock(furnace_stair, "furnace_stairs");
+        GameRegistry.registerBlock(furnace_stair, ItemBlockFromParent.class, "furnace.stairs0");
         furnace_stair.setCreativeTab(stair_down_tab);
         for (int i = 0; i < 4; i++)
             registerALogStair("log", i);

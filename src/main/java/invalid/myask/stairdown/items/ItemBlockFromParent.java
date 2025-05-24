@@ -4,6 +4,7 @@ import invalid.myask.stairdown.blocks.BlockHollowLog;
 import invalid.myask.stairdown.blocks.BlockMadeStairs;
 import invalid.myask.stairdown.api.IParentBlock;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
@@ -24,9 +25,9 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         super.addInformation(stack, player, list, advancedTooltips);
         if (advancedTooltips) {
             if (field_150939_a instanceof BlockHollowLog)
-                list.add("tooltips.hollow");
+                list.add(I18n.format("tooltips.hollow"));
             else if (field_150939_a instanceof BlockMadeStairs)
-                list.add("tooltips.stairs");
+                list.add(I18n.format("tooltips.stairs"));
         }
     }
 
