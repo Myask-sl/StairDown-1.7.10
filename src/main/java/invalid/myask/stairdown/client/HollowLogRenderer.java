@@ -45,16 +45,15 @@ public class HollowLogRenderer implements ISimpleBlockRenderingHandler {
                         renderer.uvRotateWest = ((meta & 12) > 0) ? 1 : 0;
             renderer.uvRotateTop =
                 renderer.uvRotateBottom = ((meta & 12) == 4) ? 1 : 0;
+            Tessellator tessellator = Tessellator.instance;
 
             //meta &12 == 0: up/down. phase 0-3 goes
             //meta &12 == 8: n/s. phase 0-3 goes
             //meta &12 == 4: e/w. phase 0-3 goes
-            Tessellator.instance.startDrawingQuads();
             for (int phase = 0; phase < 4; phase++) {
                 hollow.setVariablesForRenderSide(phase, meta);
                 result = renderer.renderStandardBlock(hollow, x, y, z) && result;
             }
-            Tessellator.instance.draw();
 
             renderer.uvRotateNorth = rotNorth; //kindly restore
             renderer.uvRotateSouth = rotSouth;
