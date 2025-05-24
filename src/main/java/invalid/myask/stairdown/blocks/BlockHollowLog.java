@@ -116,14 +116,14 @@ public class BlockHollowLog extends BlockRotatedPillar {
                 yMin = coord2min; yMax = coord2max;
             }
             case 4 -> {
-                yMin = 0; yMax = 16;
-                xMin = coord1min; xMax = coord1max;
-                zMin = coord2min; zMax = coord2max;
-            }
-            default -> {
                 xMin = 0; xMax = 16;
                 zMin = coord1min; zMax = coord1max;
                 yMin = coord2min; yMax = coord2max;
+            }
+            default -> {
+                yMin = 0; yMax = 16;
+                xMin = coord1min; xMax = coord1max;
+                zMin = coord2min; zMax = coord2max;
             }
         };
         setBlockBounds(xMin / 16F, yMin / 16F, zMin / 16F,
