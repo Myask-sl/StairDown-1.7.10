@@ -37,6 +37,7 @@ public class BlockHollowLog extends BlockRotatedPillar {
         this.setBlockName(parent.getUnlocalizedName());
         while (getUnlocalizedName().startsWith("tile.tile."))
             this.setBlockName(getUnlocalizedName().substring(10));
+        inSide = new ThreadLocal<>();
         inSide.set(-1);
     }
 
