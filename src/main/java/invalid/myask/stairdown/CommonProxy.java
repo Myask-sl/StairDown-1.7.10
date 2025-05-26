@@ -12,6 +12,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
         StairDownBlocks.registerVanillaLogBlocks();
+        StairDownBlocks.registerGiantBamboo();
         StairDownBlocks.registerModdedBonusBlocks();
         StairDown.LOG.info("I am " + StairDown.MODNAME + " at version " + Tags.VERSION);
     }

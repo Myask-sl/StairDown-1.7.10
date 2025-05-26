@@ -8,11 +8,13 @@ import invalid.myask.stairdown.StairDownBlocks;
 
 public class BlockBambooLog extends BlockLog {
 
-    public static final String[] TEXTURE_SUB_NAMES = new String[] { "bamboo" };
+    public static final String[] TEXTURE_SUB_NAMES = new String[] { "giant" };
 
-    BlockBambooLog() {
+    public BlockBambooLog() {
         super();
-        setCreativeTab(StairDownBlocks.stair_down_tab);
+        setCreativeTab(StairDownBlocks.STAIR_DOWN_TAB);
+        setBlockTextureName("bamboo");
+        setBlockName("bamboo_giant");
     }
 
     @Override
