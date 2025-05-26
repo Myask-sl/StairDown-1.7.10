@@ -1,19 +1,20 @@
 package invalid.myask.stairdown;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import invalid.myask.stairdown.blocks.BlockHollowLog;
-import invalid.myask.stairdown.blocks.BlockMadeStairs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import invalid.myask.stairdown.blocks.BlockHollowLog;
+import invalid.myask.stairdown.blocks.BlockMadeStairs;
+
 public class StairDownRecipes {
+
     public static void registerRecipes() {
         addStairRecipe(StairDownBlocks.furnace_stair);
-        for (BlockMadeStairs bs : StairDownBlocks.stairs)
-            addStairRecipe(bs);
+        for (BlockMadeStairs bs : StairDownBlocks.stairs) addStairRecipe(bs);
         for (BlockHollowLog hl : StairDownBlocks.logs) {
             addBigHollowLogRecipe(hl);
             addSmallHollowLogRecipe(hl);
@@ -21,7 +22,8 @@ public class StairDownRecipes {
     }
 
     private static void addStairRecipe(BlockMadeStairs stair) {
-        GameRegistry.addShapedRecipe(new ItemStack(stair, Config.stair_output_qty),
+        GameRegistry.addShapedRecipe(
+            new ItemStack(stair, Config.stair_output_qty),
             "a  ",
             "aa ",
             "aaa",
@@ -33,7 +35,8 @@ public class StairDownRecipes {
         List<ItemStack> subblocks = new ArrayList<>();
         hl.getSubBlocks(Item.getItemFromBlock(hl), null, subblocks);
         for (ItemStack stack : subblocks) {
-            GameRegistry.addShapedRecipe(new ItemStack(hl, Config.log_output_qty, stack.getItemDamage()),
+            GameRegistry.addShapedRecipe(
+                new ItemStack(hl, Config.log_output_qty, stack.getItemDamage()),
                 "LLL",
                 "L L",
                 "LLL",
@@ -46,7 +49,8 @@ public class StairDownRecipes {
         List<ItemStack> subblocks = new ArrayList<>();
         hl.getSubBlocks(Item.getItemFromBlock(hl), null, subblocks);
         for (ItemStack stack : subblocks) {
-            GameRegistry.addShapedRecipe(new ItemStack(hl, Config.small_log_output_qty, stack.getItemDamage()),
+            GameRegistry.addShapedRecipe(
+                new ItemStack(hl, Config.small_log_output_qty, stack.getItemDamage()),
                 " L ",
                 "L L",
                 " L ",

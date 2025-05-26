@@ -1,8 +1,7 @@
 package invalid.myask.stairdown.items;
 
-import invalid.myask.stairdown.blocks.BlockHollowLog;
-import invalid.myask.stairdown.blocks.BlockMadeStairs;
-import invalid.myask.stairdown.api.IParentBlock;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,9 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import invalid.myask.stairdown.api.IParentBlock;
+import invalid.myask.stairdown.blocks.BlockHollowLog;
+import invalid.myask.stairdown.blocks.BlockMadeStairs;
 
 public class ItemBlockFromParent extends ItemBlockWithMetadata {
+
     public ItemBlockFromParent(Block b) {
         this(b, b);
     }
@@ -30,10 +32,8 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advancedTooltips) {
         super.addInformation(stack, player, list, advancedTooltips);
         if (advancedTooltips) {
-            if (field_150939_a instanceof BlockHollowLog)
-                list.add(I18n.format("tooltips.hollow"));
-            else if (field_150939_a instanceof BlockMadeStairs)
-                list.add(I18n.format("tooltips.stairs"));
+            if (field_150939_a instanceof BlockHollowLog) list.add(I18n.format("tooltips.hollow"));
+            else if (field_150939_a instanceof BlockMadeStairs) list.add(I18n.format("tooltips.stairs"));
         }
     }
 
@@ -44,7 +44,8 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         if (cachedStack == null || stack != cachedStack) {
             fakeMetaStack = stack.copy();
             cachedStack = stack;
-            fakeMetaStack.setItemDamage(((IParentBlock) field_150939_a).getParentMeta()); //TODO: fix to allow current meta through somewise
+            fakeMetaStack.setItemDamage(((IParentBlock) field_150939_a).getParentMeta()); // TODO: fix to allow current
+                                                                                          // meta through somewise
         }
         Item nullcheck = getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock());
         return nullcheck != null ? nullcheck.getUnlocalizedName(fakeMetaStack) : "UNKNOWN ITEMPARENT";

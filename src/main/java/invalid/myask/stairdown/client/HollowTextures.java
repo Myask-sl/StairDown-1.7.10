@@ -1,14 +1,16 @@
 package invalid.myask.stairdown.client;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
-import java.util.HashMap;
-import java.util.Map;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HollowTextures {
+
     public static final HollowTextures instance = new HollowTextures();
     private static Map<String, TextureAtlasSprite> HOLLOW_ICONS = new HashMap<>();
 
@@ -28,7 +30,6 @@ public class HollowTextures {
 
     @SubscribeEvent
     public void applyToStitched(TextureStitchEvent.Post event) {
-        for (TextureAtlasSprite icon : HOLLOW_ICONS.values())
-            loadInsideIcon(icon);
+        for (TextureAtlasSprite icon : HOLLOW_ICONS.values()) loadInsideIcon(icon);
     }
 }

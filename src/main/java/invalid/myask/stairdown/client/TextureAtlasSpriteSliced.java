@@ -3,8 +3,10 @@ package invalid.myask.stairdown.client;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 public class TextureAtlasSpriteSliced extends TextureAtlasSprite {
+
     protected TextureAtlasSprite parent;
     protected float minV, maxV;
+
     public TextureAtlasSpriteSliced(TextureAtlasSprite parent) {
         super(parent.getIconName());
         this.parent = parent;
@@ -25,7 +27,7 @@ public class TextureAtlasSpriteSliced extends TextureAtlasSprite {
         return maxV;
     }
 
-    @Override //gotta because parent's Vs were private
+    @Override // gotta because parent's Vs were private
     public float getInterpolatedV(double pixels) {
         return minV + (float) ((maxV - minV) * pixels / 16);
     }
