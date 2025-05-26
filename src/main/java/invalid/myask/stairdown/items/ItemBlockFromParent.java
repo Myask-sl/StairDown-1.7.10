@@ -6,6 +6,7 @@ import invalid.myask.stairdown.api.IParentBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
@@ -40,6 +41,7 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
             cachedStack = stack;
             fakeMetaStack.setItemDamage(((IParentBlock) field_150939_a).getParentMeta());
         }
-        return getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock()).getUnlocalizedName(fakeMetaStack);
+        Item nullcheck = getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock());
+        return nullcheck != null ? nullcheck.getUnlocalizedName(fakeMetaStack) : "UNKNOWN ITEMPARENT";
     }
 }
