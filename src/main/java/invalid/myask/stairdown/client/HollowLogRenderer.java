@@ -27,13 +27,13 @@ public class HollowLogRenderer implements ISimpleBlockRenderingHandler {
                             renderer.uvRotateTop =
                                 renderer.uvRotateBottom = 0;
             int facing = (metadata & 12) == 0 ? 0 : (metadata & 12) == 8 ? 2 : 4;
-            if (facing > 3)// || isD && meta >= 8) //only EW need rotated top.
+            if (facing == 4)
             {
                 renderer.uvRotateBottom = 1;
                 renderer.uvRotateTop = 1;
                 renderer.uvRotateEast = 1; //rotate the side
                 renderer.uvRotateWest = 1;
-            } else {
+            } else if (facing == 2) {
                 renderer.uvRotateNorth = 1;
                 renderer.uvRotateSouth = 1;
             }
