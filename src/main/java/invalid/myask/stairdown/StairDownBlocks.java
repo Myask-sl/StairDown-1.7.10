@@ -51,7 +51,7 @@ public class StairDownBlocks {
 
     public static void registerALogStair(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
-        if (b == null) {
+        if (b == null || b == Blocks.air) {
             StairDown.LOG.error("Block {} not found in registry to make log stair of, skipping...", s);
             return;
         }
@@ -62,7 +62,7 @@ public class StairDownBlocks {
 
     public static void registerAStair(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
-        if (b == null) {
+        if (b == null || b == Blocks.air) {
             StairDown.LOG.error("Block {} not found in registry to make stair of, skipping...", s);
             return;
         }
@@ -73,7 +73,7 @@ public class StairDownBlocks {
 
     public static void registerAHollowLog(String s, int meta) {
         Block b = (Block) Block.blockRegistry.getObject(s);
-        if (b == null) {
+        if (b == null || b == Blocks.air) {
             StairDown.LOG.error("Block {} not found in registry to make hollow log of, skipping...", s);
             return;
         }
