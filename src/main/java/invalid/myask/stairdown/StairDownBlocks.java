@@ -50,6 +50,7 @@ public class StairDownBlocks {
     public static void registerGiantBamboo() {
         if (Config.enable_giant_bamboo) {
             GameRegistry.registerBlock(GIANT_BAMBOO, "bamboo_giant");
+            GIANT_BAMBOO.setCreativeTab(StairDownBlocks.STAIR_DOWN_TAB);
             OreDictionary.registerOre("plankBamboo", new ItemStack(GameRegistry.findBlock("BiomesOPlenty","planks"), 1, 10));
             if (Config.enable_hollow_bamboo) {
                 registerAHollowLog("stairdown:bamboo_giant", 0);
