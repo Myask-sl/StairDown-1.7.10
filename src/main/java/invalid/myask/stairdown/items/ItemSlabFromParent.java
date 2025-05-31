@@ -8,9 +8,9 @@ import net.minecraft.realms.RealmsMth;
 
 public class ItemSlabFromParent extends ItemSlab {
     BlockMadeSlab parent;
-    public ItemSlabFromParent(BlockMadeSlab block, BlockMadeSlab slab, BlockSlab doubleSlab, boolean isDouble) {
+    public ItemSlabFromParent(Block block, BlockMadeSlab slab, BlockSlab doubleSlab, boolean isDouble) {
         super(block, slab, doubleSlab, isDouble);
-        parent = block;
+        parent = (BlockMadeSlab) block;
     }
 
     @Override
