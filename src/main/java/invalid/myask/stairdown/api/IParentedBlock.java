@@ -2,7 +2,7 @@ package invalid.myask.stairdown.api;
 
 import net.minecraft.block.Block;
 
-public interface IParentBlock {
+public interface IParentedBlock {
 
     Block getParentBlock();
 

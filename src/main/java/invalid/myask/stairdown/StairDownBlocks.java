@@ -33,7 +33,7 @@ public class StairDownBlocks {
 
     public static void registerVanillaLogBlocks() {
         if (Config.enable_osha_noncompliant_stairs) {
-            GameRegistry.registerBlock(FURNACE_STAIR, ItemBlockFromParent.class, "furnace.stairs0");
+            GameRegistry.registerBlock(FURNACE_STAIR, ItemBlockFromParent.class, "furnace.stairs.0");
             FURNACE_STAIR.setCreativeTab(STAIR_DOWN_TAB);
             registerAStair("crafting_table", 0);
         }
@@ -78,7 +78,7 @@ public class StairDownBlocks {
             return;
         }
         BlockMadeStairs bs = new BlockLogStairs(b, meta);
-        registerABlockAlter(bs, s, ".stairs" + meta);
+        registerABlockAlter(bs, s, ".stairs." + meta, ItemBlockFromParent.class);
         MADE_STAIRS.add(bs);
     }
 
@@ -89,7 +89,7 @@ public class StairDownBlocks {
             return;
         }
         BlockMadeStairs bs = new BlockMadeStairs(b, meta);
-        registerABlockAlter(bs, s, ".stairs" + meta);
+        registerABlockAlter(bs, s, ".stairs." + meta, ItemBlockFromParent.class);
         MADE_STAIRS.add(bs);
     }
 
@@ -100,7 +100,7 @@ public class StairDownBlocks {
             return;
         }
         BlockHollowLog bhl = new BlockHollowLog(b, meta);
-        registerABlockAlter(bhl, s, ".hollow" + meta);
+        registerABlockAlter(bhl, s, ".hollow." + meta, ItemBlockFromParent.class);
         HOLLOW_LOGS.add(bhl);
     }
 }

@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-import invalid.myask.stairdown.api.IParentBlock;
+import invalid.myask.stairdown.api.IParentedBlock;
 import invalid.myask.stairdown.blocks.BlockHollowLog;
 import invalid.myask.stairdown.blocks.BlockMadeStairs;
 
@@ -23,9 +23,8 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         this(b, b1, "");
     }
 
-    public ItemBlockFromParent(Block b, Block b1, String s) {
+    public ItemBlockFromParent(Block b, Block b1, String s) { //TODO: remember what s was for
         super(b, b1);
-
     }
 
     @Override
@@ -44,10 +43,10 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         if (cachedStack == null || stack != cachedStack) {
             fakeMetaStack = stack.copy();
             cachedStack = stack;
-            fakeMetaStack.setItemDamage(((IParentBlock) field_150939_a).getParentMeta()); // TODO: fix to allow current
+            fakeMetaStack.setItemDamage(((IParentedBlock) field_150939_a).getParentMeta()); // TODO: fix to allow current
                                                                                           // meta through somewise
         }
-        Item nullcheck = getItemFromBlock(((IParentBlock) field_150939_a).getParentBlock());
+        Item nullcheck = getItemFromBlock(((IParentedBlock) field_150939_a).getParentBlock());
         return nullcheck != null ? nullcheck.getUnlocalizedName(fakeMetaStack) : "UNKNOWN ITEMPARENT";
     }
 }

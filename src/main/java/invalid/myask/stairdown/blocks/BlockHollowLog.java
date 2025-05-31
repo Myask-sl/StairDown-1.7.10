@@ -17,11 +17,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import invalid.myask.stairdown.Config;
-import invalid.myask.stairdown.api.IParentBlock;
+import invalid.myask.stairdown.api.IParentedBlock;
 import invalid.myask.stairdown.client.HollowLogRenderer;
 import invalid.myask.stairdown.client.HollowTextures;
 
-public class BlockHollowLog extends BlockLog implements IParentBlock {
+public class BlockHollowLog extends BlockLog implements IParentedBlock {
 
     final Block parentBlock;
     final int parentMeta;
@@ -134,7 +134,7 @@ public class BlockHollowLog extends BlockLog implements IParentBlock {
                 zMin = coord2min;
                 zMax = coord2max;
             }
-        };
+        }
         setBlockBounds(xMin / 16F, yMin / 16F, zMin / 16F, xMax / 16F, yMax / 16F, zMax / 16F);
     }
 

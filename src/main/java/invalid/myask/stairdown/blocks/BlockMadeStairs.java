@@ -5,16 +5,16 @@ import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.world.World;
 
-import invalid.myask.stairdown.api.IParentBlock;
+import invalid.myask.stairdown.api.IParentedBlock;
 
-public class BlockMadeStairs extends BlockStairs implements IParentBlock {
+public class BlockMadeStairs extends BlockStairs implements IParentedBlock {
 
     protected final Block parentBlock;
     protected final int parentMeta;
 
     /**
      * Ctor
-     * 
+     *
      * @param parentBlock block from which to draw textures and behavior
      * @param parentMeta  meta from which to draw textures and behavior--note that vanilla logs use upper two bits for
      *                    orientation
