@@ -14,6 +14,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import invalid.myask.stairdown.blocks.BlockHollowLog;
 import invalid.myask.stairdown.blocks.BlockMadeStairs;
+import invalid.myask.stairdown.blocks.BlockMadeSlab;
 
 public class StairDownRecipes {
 
@@ -24,6 +25,11 @@ public class StairDownRecipes {
             addBigHollowLogRecipe(hl);
             addSmallHollowLogRecipe(hl);
         }
+        for (BlockMadeSlab bs : StairDownBlocks.MADE_SLABS) {
+            addSlabRecipe(bs);
+            if (Config.reconstitute_slabs) addDeSlabRecipe(bs);
+        }
+
         if (Config.enable_giant_bamboo) {
             GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(StairDownBlocks.GIANT_BAMBOO),
@@ -50,6 +56,20 @@ public class StairDownRecipes {
                     StairDownBlocks.GIANT_BAMBOO);
             }
         }
+    }
+
+    private static void addSlabRecipe(BlockMadeSlab slab) {
+        GameRegistry.addShapedRecipe(
+            new ItemStack(slab, 6),
+            "bbb",
+            'b', new ItemStack(slab.getParentBlock(), 1, slab.getParentMeta()));
+    }
+
+    private static void addDeSlabRecipe(BlockMadeSlab slab) {
+        GameRegistry.addShapedRecipe(
+            new ItemStack(slab.getParentBlock(), 1, slab.getParentMeta()),
+            "ss",
+            's', new ItemStack(slab, 1));
     }
 
     private static void addStairRecipe(BlockMadeStairs stair) {
