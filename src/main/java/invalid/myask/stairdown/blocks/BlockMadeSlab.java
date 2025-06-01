@@ -39,8 +39,8 @@ public class BlockMadeSlab extends BlockSlab implements IParentedBlock {
 
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-        if (getBlockFromItem(itemIn) instanceof BlockMadeSlab bs &&
-            !itemIn.getUnlocalizedName().contains("doubleSlab")) {
+        if (getBlockFromItem(itemIn) instanceof BlockMadeSlab bs
+            && !itemIn.getUnlocalizedName().contains("doubleSlab")) {
             for (int meta = parentMetaMin; meta <= parentMetaMax; meta++) list.add(new ItemStack(itemIn, 1, meta));
         }
     }
