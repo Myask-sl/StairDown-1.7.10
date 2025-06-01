@@ -68,6 +68,7 @@ public class StairDownBlocks {
 
     public static void registerModdedBonusBlocks() {
         registerAStair("BiomesOPlenty:planks", 10);
+        registerASlab("BiomesOPlenty:planks", 10, 10);
     }
 
     public static void registerABlockAlter(Block b, String oldname, String postfix, Class<? extends ItemBlock> itemBlockClass, Object... itemBlockParams) {
