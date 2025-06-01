@@ -10,12 +10,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import invalid.myask.stairdown.blocks.*;
-import invalid.myask.stairdown.items.ItemSlabFromParent;
 import invalid.myask.stairdown.items.ItemBlockFromParent;
+import invalid.myask.stairdown.items.ItemSlabFromParent;
 
 public class StairDownBlocks {
 
@@ -56,7 +55,8 @@ public class StairDownBlocks {
         if (Config.enable_giant_bamboo) {
             GameRegistry.registerBlock(GIANT_BAMBOO, "bamboo_giant");
             GIANT_BAMBOO.setCreativeTab(StairDownBlocks.STAIR_DOWN_TAB);
-            OreDictionary.registerOre("plankBamboo", new ItemStack(GameRegistry.findBlock("BiomesOPlenty","planks"), 1, 10));
+            OreDictionary
+                .registerOre("plankBamboo", new ItemStack(GameRegistry.findBlock("BiomesOPlenty", "planks"), 1, 10));
             if (Config.enable_hollow_bamboo) {
                 registerAHollowLog("stairdown:bamboo_giant", 0);
             }
@@ -71,7 +71,8 @@ public class StairDownBlocks {
         registerASlab("BiomesOPlenty:planks", 10, 10);
     }
 
-    public static void registerABlockAlter(Block b, String oldname, String postfix, Class<? extends ItemBlock> itemBlockClass, Object... itemBlockParams) {
+    public static void registerABlockAlter(Block b, String oldname, String postfix,
+        Class<? extends ItemBlock> itemBlockClass, Object... itemBlockParams) {
         String preformat = (oldname == null) ? b.getUnlocalizedName() : oldname;
         while (preformat.startsWith("tile.")) preformat = preformat.substring(5);
         preformat = preformat.replace(':', '.'); // let's make the othermod
@@ -121,8 +122,8 @@ public class StairDownBlocks {
         }
         BlockMadeSlab bs = new BlockMadeSlab(false, b, metaMin, metaMax);
         BlockMadeSlab bds = new BlockMadeSlab(true, b, metaMin, metaMax);
-        registerABlockAlter(bs, s, ".slab." + metaMin + ".." + metaMax, ItemSlabFromParent.class,  bs, bds, false);
-        registerABlockAlter(bds, s, ".doubleSlab." + metaMin + ".." + metaMax, ItemSlabFromParent.class,  bs, bds, true);
+        registerABlockAlter(bs, s, ".slab." + metaMin + ".." + metaMax, ItemSlabFromParent.class, bs, bds, false);
+        registerABlockAlter(bds, s, ".doubleSlab." + metaMin + ".." + metaMax, ItemSlabFromParent.class, bs, bds, true);
         MADE_SLABS.add(bs);
         MADE_SLABS.add(bds);
     }

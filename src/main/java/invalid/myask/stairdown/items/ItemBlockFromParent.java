@@ -23,7 +23,7 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         this(b, b1, "");
     }
 
-    public ItemBlockFromParent(Block b, Block b1, String s) { //TODO: remember what s was for
+    public ItemBlockFromParent(Block b, Block b1, String s) { // TODO: remember what s was for
         super(b, b1);
     }
 
@@ -43,8 +43,6 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         if (cachedStack == null || stack != cachedStack) {
             fakeMetaStack = stack.copy();
             cachedStack = stack;
-//            fakeMetaStack.setItemDamage(((IParentedBlock) field_150939_a).getParentMeta()); // TODO: fix to allow current
-                                                                                          // meta through somewise
         }
         Item nullcheck = getItemFromBlock(((IParentedBlock) field_150939_a).getParentBlock());
         return nullcheck != null ? nullcheck.getUnlocalizedName(fakeMetaStack) : "UNKNOWN ITEMPARENT";

@@ -56,7 +56,8 @@ public class Config {
             8,
             "Hollow log thickness in standard MC pixels (0-8)");
 
-        reconstitute_slabs = configuration.getBoolean("reconstitute_slabs",
+        reconstitute_slabs = configuration.getBoolean(
+            "reconstitute_slabs",
             "recipes",
             reconstitute_slabs,
             "Add remaking blocks from their [new] slabs recipe--doesn't make for pre-existing slabs.");
@@ -81,7 +82,6 @@ public class Config {
             "addblocks.preset",
             enable_osha_noncompliant_stairs,
             "Register/add recipes for OSHA-noncompliant combination workplace-stairs.");
-
 
         enable_giant_bamboo = configuration.getBoolean(
             "enable_giant_bamboo",

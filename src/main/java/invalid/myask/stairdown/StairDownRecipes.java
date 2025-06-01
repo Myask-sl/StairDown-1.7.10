@@ -7,14 +7,13 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import invalid.myask.stairdown.blocks.BlockHollowLog;
-import invalid.myask.stairdown.blocks.BlockMadeStairs;
 import invalid.myask.stairdown.blocks.BlockMadeSlab;
+import invalid.myask.stairdown.blocks.BlockMadeStairs;
 
 public class StairDownRecipes {
 
@@ -40,7 +39,7 @@ public class StairDownRecipes {
             Block bamboo = GameRegistry.findBlock("biomesoplenty", "planks");
             ItemStack bambooStack = null;
             boolean foundBambooPlank = false;
-            if (bamboo == null || bamboo == Blocks.air) { //apparently only "minecraft:" returns air on fails??
+            if (bamboo == null || bamboo == Blocks.air) { // apparently only "minecraft:" returns air on fails??
                 List<ItemStack> l = OreDictionary.getOres("plankBamboo");
                 if (!l.isEmpty()) {
                     foundBambooPlank = true;
