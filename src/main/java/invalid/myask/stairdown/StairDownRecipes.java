@@ -40,9 +40,9 @@ public class StairDownRecipes {
             Block bamboo = GameRegistry.findBlock("biomesoplenty", "planks");
             ItemStack bambooStack = null;
             boolean foundBambooPlank = false;
-            if (bamboo == Blocks.air) {
+            if (bamboo == null || bamboo == Blocks.air) { //apparently only "minecraft:" returns air on fails??
                 List<ItemStack> l = OreDictionary.getOres("plankBamboo");
-                if (l != OreDictionary.EMPTY_LIST) {
+                if (!l.isEmpty()) {
                     foundBambooPlank = true;
                     bambooStack = l.get(0);
                     bambooStack.stackSize = 4;
@@ -51,7 +51,7 @@ public class StairDownRecipes {
                 foundBambooPlank = true;
                 bambooStack = new ItemStack(bamboo, 4, 10);
             }
-            if (foundBambooPlank) {
+            if (foundBambooPlank && bambooStack != null && bambooStack.getItem() != null) {
                 GameRegistry.addShapelessRecipe(bambooStack,
                     StairDownBlocks.GIANT_BAMBOO);
             }
