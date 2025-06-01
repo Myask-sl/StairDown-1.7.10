@@ -120,8 +120,8 @@ public class StairDownBlocks {
         }
         BlockMadeSlab bs = new BlockMadeSlab(false, b, metaMin, metaMax);
         BlockMadeSlab bds = new BlockMadeSlab(true, b, metaMin, metaMax);
-        registerABlockAlter(bs, s, ".slab." + metaMin + ".." + metaMax, ItemSlabFromParent.class, bs, bs, bds, false);
-        registerABlockAlter(bds, s, ".doubleSlab." + metaMin + ".." + metaMax, ItemSlabFromParent.class, bds, bs, bds, true);
+        registerABlockAlter(bs, s, ".slab." + metaMin + ".." + metaMax, ItemSlabFromParent.class, bs, bds, false);
+        registerABlockAlter(bds, s, ".doubleSlab." + metaMin + ".." + metaMax, ItemSlabFromParent.class,  bs, bds, true);
         MADE_SLABS.add(bs);
         MADE_SLABS.add(bds);
     }
