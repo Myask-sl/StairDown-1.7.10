@@ -29,12 +29,12 @@ public class StairDownRecipes {
             if (Config.reconstitute_slabs) addDeSlabRecipe(bs);
         }
 
-        if (Config.enable_giant_bamboo) { // spotless:off
+        if (Config.enable_giant_bamboo) {
             GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(StairDownBlocks.GIANT_BAMBOO),
                 "BB",
                 "BB",
-                'B', "plankBamboo")); // spotless:on
+                'B', "plankBamboo"));
             Block bamboo = GameRegistry.findBlock("biomesoplenty", "planks");
             ItemStack bambooStack = null;
             boolean foundBambooPlank = false;
@@ -49,34 +49,34 @@ public class StairDownRecipes {
                 foundBambooPlank = true;
                 bambooStack = new ItemStack(bamboo, 4, 10);
             }
-            if (foundBambooPlank && bambooStack != null && bambooStack.getItem() != null) { // spotless:off
+            if (foundBambooPlank && bambooStack != null && bambooStack.getItem() != null) {
                 GameRegistry.addShapelessRecipe(bambooStack,
-                    StairDownBlocks.GIANT_BAMBOO); // spotless:on
+                    StairDownBlocks.GIANT_BAMBOO);
             }
         }
     }
 
     private static void addSlabRecipe(BlockMadeSlab slab) {
-        GameRegistry.addShapedRecipe( // spotless:off
+        GameRegistry.addShapedRecipe(
             new ItemStack(slab, 6),
             "bbb",
-            'b', new ItemStack(slab.getParentBlock(), 1, slab.getParentMeta())); // spotless:on
+            'b', new ItemStack(slab.getParentBlock(), 1, slab.getParentMeta()));
     }
 
     private static void addDeSlabRecipe(BlockMadeSlab slab) {
-        GameRegistry.addShapedRecipe( // spotless:off
+        GameRegistry.addShapedRecipe(
             new ItemStack(slab.getParentBlock(), 1, slab.getParentMeta()),
             "ss",
-            's', new ItemStack(slab, 1)); // spotless:on
+            's', new ItemStack(slab, 1));
     }
 
     private static void addStairRecipe(BlockMadeStairs stair) {
-        GameRegistry.addShapedRecipe( // spotless:off
+        GameRegistry.addShapedRecipe(
             new ItemStack(stair, Config.stair_output_qty),
             "a  ",
             "aa ",
             "aaa",
-            'a', new ItemStack(stair.getParentBlock(), 1, stair.getParentMeta())); // spotless:on
+            'a', new ItemStack(stair.getParentBlock(), 1, stair.getParentMeta()));
     }
 
     private static void addBigHollowLogRecipe(BlockHollowLog hl) {
@@ -84,12 +84,12 @@ public class StairDownRecipes {
         List<ItemStack> subblocks = new ArrayList<>();
         hl.getSubBlocks(Item.getItemFromBlock(hl), null, subblocks);
         for (ItemStack stack : subblocks) {
-            GameRegistry.addShapedRecipe( // spotless:off
+            GameRegistry.addShapedRecipe(
                 new ItemStack(hl, Config.log_output_qty, stack.getItemDamage()),
                 "LLL",
                 "L L",
                 "LLL",
-                'L', new ItemStack(hl.getParentBlock(), 1, stack.getItemDamage())); // spotless:on
+                'L', new ItemStack(hl.getParentBlock(), 1, stack.getItemDamage()));
         }
     }
 
@@ -98,12 +98,12 @@ public class StairDownRecipes {
         List<ItemStack> subblocks = new ArrayList<>();
         hl.getSubBlocks(Item.getItemFromBlock(hl), null, subblocks);
         for (ItemStack stack : subblocks) {
-            GameRegistry.addShapedRecipe( // spotless:off
+            GameRegistry.addShapedRecipe(
                 new ItemStack(hl, Config.small_log_output_qty, stack.getItemDamage()),
                 " L ",
                 "L L",
                 " L ",
-                'L', new ItemStack(hl.getParentBlock(), 1, stack.getItemDamage())); // spotless:on
+                'L', new ItemStack(hl.getParentBlock(), 1, stack.getItemDamage()));
         }
     }
 }
