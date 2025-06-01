@@ -3,6 +3,7 @@ package invalid.myask.stairdown.blocks;
 import invalid.myask.stairdown.api.IParentedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -50,4 +51,7 @@ public class BlockMadeSlab extends BlockSlab implements IParentedBlock {
     public int getMetaMax() {
         return parentMetaMax;
     }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {}
 }
