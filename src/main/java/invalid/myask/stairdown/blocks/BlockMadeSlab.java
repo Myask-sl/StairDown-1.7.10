@@ -24,6 +24,7 @@ public class BlockMadeSlab extends BlockSlab implements IParentedBlock {
         parentMetaMax = metaMax;
         parentBlock = parent;
         this.isDouble = isDouble;
+        useNeighborBrightness = true;
     }
 
     @Override
