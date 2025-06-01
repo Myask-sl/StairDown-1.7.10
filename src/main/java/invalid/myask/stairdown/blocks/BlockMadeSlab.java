@@ -8,6 +8,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 import java.util.List;
 
@@ -36,6 +37,11 @@ public class BlockMadeSlab extends BlockSlab implements IParentedBlock {
             for (int meta = parentMetaMin; meta <= parentMetaMax; meta++)
                 list.add(new ItemStack(itemIn, 1, meta));
         }
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        return parentBlock.getIcon(side, meta & -9);
     }
 
     @Override
