@@ -43,7 +43,7 @@ public class ItemBlockFromParent extends ItemBlockWithMetadata {
         if (cachedStack == null || stack != cachedStack) {
             fakeMetaStack = stack.copy();
             cachedStack = stack;
-            fakeMetaStack.setItemDamage(((IParentedBlock) field_150939_a).getParentMeta()); // TODO: fix to allow current
+//            fakeMetaStack.setItemDamage(((IParentedBlock) field_150939_a).getParentMeta()); // TODO: fix to allow current
                                                                                           // meta through somewise
         }
         Item nullcheck = getItemFromBlock(((IParentedBlock) field_150939_a).getParentBlock());
