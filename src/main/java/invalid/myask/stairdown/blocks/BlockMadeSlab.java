@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.realms.RealmsMth;
 import net.minecraft.util.IIcon;
 
 import invalid.myask.stairdown.api.IParentedBlock;
@@ -47,7 +48,7 @@ public class BlockMadeSlab extends BlockSlab implements IParentedBlock {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return parentBlock.getIcon(side, meta & -9);
+        return parentBlock.getIcon(side, RealmsMth.clamp(meta & -9, parentMetaMin, parentMetaMax));
     }
 
     @Override

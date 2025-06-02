@@ -24,7 +24,7 @@ public class ItemSlabFromParent extends ItemSlab {
 
     @Override
     public int getMetadata(int damage) {
-        return RealmsMth.clamp(damage, theSlab.getParentMeta(), theSlab.getMetaMax());
+        return Math.max(Math.min(Math.min(damage, theSlab.getMetaMax() - theSlab.getParentMeta()), 7), 0);
     }
 
     @Override
