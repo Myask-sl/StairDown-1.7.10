@@ -32,8 +32,9 @@ public class StairDownRecipes {
         if (Config.enable_giant_bamboo) {
             GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(StairDownBlocks.GIANT_BAMBOO),
-                "BB",
-                "BB",
+                " B ",
+                "B B",
+                " B ",
                 'B', "plankBamboo"));
             Block bamboo = GameRegistry.findBlock("biomesoplenty", "planks");
             ItemStack bambooStack = null;
