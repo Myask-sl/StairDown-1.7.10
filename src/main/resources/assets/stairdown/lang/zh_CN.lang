@@ -1,0 +1,7 @@
+itemGroup.stairdown=StairDown
+
+tile.bamboo_giant.name=巨型竹子
+
+tooltips.stairs=(楼梯)
+tooltips.hollow=(空心)
+tooltips.slab=(台阶)
